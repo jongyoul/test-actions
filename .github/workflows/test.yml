@@ -1,0 +1,16 @@
+name: Test secrets
+on:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Test Key
+        env:
+          TEST_KEY: ${{ secrets.TEST_KEY }}
+        run: |
+          echo "token: ${TEST_KEY}"
+          echo "token: $TEST_KEY" > token.txt
+          cat token.txt
+          cat README.md
